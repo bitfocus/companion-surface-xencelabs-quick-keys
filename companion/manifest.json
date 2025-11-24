@@ -21,5 +21,11 @@
 		"entrypoint": "../dist/main.js"
 	},
 	"keywords": ["xencelabs", "quick keys"],
-	"products": ["Xencelabs Quick Keys"]
+	"products": ["Xencelabs Quick Keys"],
+	"usbIds": [
+		{
+			"vendorId": 10429,
+			"productIds": [20995]
+		}
+	]
 }

@@ -37,7 +37,7 @@ class QuickKeysDetection extends EventEmitter<SurfacePluginDetectionEvents<Devic
 			// Ignore devices without an ID
 			if (!dev.deviceId) return
 
-			this.emit('surfacesRemoved', [`quickkeys:${dev.deviceId}`])
+			// this.emit('surfacesRemoved', [`quickkeys:${dev.deviceId}`])
 		})
 	}
 
@@ -89,7 +89,9 @@ const QuickKeysPlugin: SurfacePlugin<DeviceInfo> = {
 						'1/4': { row: 1, column: 4 },
 					},
 				},
-				pincodeMap: null, // TODO - or custom?
+				pincodeMap: null,
+				configFields: [],
+				location: null,
 			},
 		}
 	},

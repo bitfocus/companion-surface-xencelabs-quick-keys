@@ -1,6 +1,6 @@
 {
 	"name": "companion-surface-xencelabs-quick-keys",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"main": "dist/main.js",
 	"type": "module",
 	"scripts": {
@@ -19,11 +19,11 @@
 		"url": "git+https://github.com/bitfocus/companion-surface-xencelabs-quick-keys.git"
 	},
 	"engines": {
-		"node": "^22.14",
+		"node": "^22.18",
 		"yarn": "^4"
 	},
 	"dependencies": {
-		"@companion-surface/base": "~0.1.5",
+		"@companion-surface/base": "~0.6.1",
 		"@xencelabs-quick-keys/node": "^1.0.0"
 	},
 	"devDependencies": {
