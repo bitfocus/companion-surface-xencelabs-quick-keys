@@ -27,6 +27,7 @@ class QuickKeysDetection extends EventEmitter<SurfacePluginDetectionEvents<Devic
 
 			this.emit('surfacesAdded', [
 				{
+					deviceHandle: dev.deviceId,
 					surfaceId: `quickkeys:${dev.deviceId}`,
 					description: `Xencelabs Quick Keys`,
 					pluginInfo: { device: dev },
@@ -37,7 +38,7 @@ class QuickKeysDetection extends EventEmitter<SurfacePluginDetectionEvents<Devic
 			// Ignore devices without an ID
 			if (!dev.deviceId) return
 
-			// this.emit('surfacesRemoved', [`quickkeys:${dev.deviceId}`])
+			this.emit('surfacesRemoved', [dev.deviceId])
 		})
 	}
 

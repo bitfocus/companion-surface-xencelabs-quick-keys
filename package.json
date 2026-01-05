@@ -23,7 +23,7 @@
 		"yarn": "^4"
 	},
 	"dependencies": {
-		"@companion-surface/base": "~1.0.0",
+		"@companion-surface/base": "~1.1.0",
 		"@xencelabs-quick-keys/node": "^1.0.0"
 	},
 	"devDependencies": {
