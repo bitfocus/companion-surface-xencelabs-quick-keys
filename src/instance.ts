@@ -11,6 +11,7 @@ import {
 	XencelabsQuickKeys,
 	XencelabsQuickKeysDisplayBrightness,
 	XencelabsQuickKeysDisplayOrientation,
+	XencelabsQuickKeysManagerInstance,
 	XencelabsQuickKeysWheelSpeed,
 } from '@xencelabs-quick-keys/node'
 import { companionToKey, keyToCompanion } from './util.js'
@@ -18,7 +19,7 @@ import { companionToKey, keyToCompanion } from './util.js'
 export class QuickKeysWrapper implements SurfaceInstance {
 	readonly #surface: XencelabsQuickKeys
 	readonly #surfaceId: string
-	// readonly #context: SurfaceContext
+	readonly #context: SurfaceContext
 
 	#statusTimer: NodeJS.Timeout | undefined
 
@@ -32,7 +33,9 @@ export class QuickKeysWrapper implements SurfaceInstance {
 	public constructor(surfaceId: string, surface: XencelabsQuickKeys, context: SurfaceContext) {
 		this.#surface = surface
 		this.#surfaceId = surfaceId
-		// this.#context = context
+		this.#context = context
+
+		XencelabsQuickKeysManagerInstance.on('disconnect', this.#onDisconnect)
 
 		this.#surface.on('error', (e) => context.disconnect(e as Error))
 
@@ -71,9 +74,17 @@ export class QuickKeysWrapper implements SurfaceInstance {
 		await this.blank()
 	}
 	async close(): Promise<void> {
+		XencelabsQuickKeysManagerInstance.off('disconnect', this.#onDisconnect)
+
 		this.stopStatusInterval()
 
 		await this.#surface.stopData()
+	}
+
+	#onDisconnect = (dev: XencelabsQuickKeys) => {
+		if (dev === this.#surface) {
+			this.#context.disconnect(new Error('Device disconnected'))
+		}
 	}
 
 	updateCapabilities(_capabilities: HostCapabilities): void {
