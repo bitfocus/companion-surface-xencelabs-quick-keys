@@ -27,7 +27,7 @@
 		"@xencelabs-quick-keys/node": "^1.0.0"
 	},
 	"devDependencies": {
-		"@companion-module/tools": "^3.0.1",
+		"@companion-module/tools": "^3.1.0",
 		"@types/node": "^22.19.17",
 		"eslint": "^10.2.0",
 		"husky": "^9.1.7",
